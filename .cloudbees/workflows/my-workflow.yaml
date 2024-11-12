@@ -21,10 +21,10 @@ jobs:
         name: Configure container registry credentials
         uses: cloudbees-io/configure-oci-credentials@v1
         with:
-          registry: https://hub.docker.com
+          registry: https://registry.hub.docker.com
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build container image with Kaniko
         uses: cloudbees-io/kaniko@v1
         with:
-          destination:  https://hub.docker.com/docker-demo:0.0.1-SNAPSHOT
+          destination:  https://registry.hub.docker.com/docker-demo:0.0.1-SNAPSHOT
