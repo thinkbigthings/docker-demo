@@ -17,4 +17,7 @@ jobs:
         shell: sh
         run: |
           ./gradlew clean build;
-          docker build -t docker-demo:0.0.1-SNAPSHOT;
+      - name: Build container image with Kaniko
+        uses: cloudbees-io/kaniko@v1
+        with:
+          destination:  docker-demo:0.0.1-SNAPSHOT
