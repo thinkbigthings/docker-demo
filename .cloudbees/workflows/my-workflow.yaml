@@ -16,4 +16,5 @@ jobs:
         uses: docker://eclipse-temurin:21-alpine
         shell: sh
         run: |
-          ./gradlew clean build
+          ./gradlew clean build;
+          docker build -t docker-demo:0.0.1-SNAPSHOT;
