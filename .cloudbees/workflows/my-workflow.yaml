@@ -11,7 +11,7 @@ jobs:
   build:
     steps:
       - name: Checkout
-        uses: cloudbees-io/checkout@@CBP-6772-2
+        uses: cloudbees-io/checkout@v1
       - name: Build
         uses: docker://eclipse-temurin:21-alpine
         shell: sh
@@ -25,6 +25,6 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build container image with Kaniko
-        uses: cloudbees-io/kaniko@v1
+        uses: cloudbees-io/kaniko@CBP-6772-2
         with:
           destination:  docker.io/jyoungcb/docker-demo:0.0.1-SNAPSHOT
