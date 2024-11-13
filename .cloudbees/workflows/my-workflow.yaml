@@ -25,6 +25,6 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build container image with Kaniko
-        uses: cloudbees-io/kaniko@va0cb1b7ee330e2f1ecf0e7bb974e167f30c0bce6
+        uses: cloudbees-io/kaniko@v1
         with:
           destination:  docker.io/jyoungcb/docker-demo:0.0.1-SNAPSHOT
