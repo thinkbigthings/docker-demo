@@ -26,7 +26,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build container image with Kaniko
         # uses: cloudbees-io/kaniko@2207c0db170fcd1d0687a2e47b18f19714796c62
-        uses: cloudbees-io/kaniko@v1
+        # uses: cloudbees-io/kaniko@v1
+        uses: cloudbees-io/kaniko
         with:
-          # send-artifact-flag: true
+          send-artifact-flag: true
           destination:  docker.io/jyoungcb/docker-demo:0.0.1-${{cloudbees.version}}
