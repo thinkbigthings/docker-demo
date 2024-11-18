@@ -13,4 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: cloudbees-io/checkout@v1.1.16
-      
+      - name: Build
+        uses: docker://eclipse-temurin:21-alpine
+        shell: sh
+        run: |
+          ./gradlew clean build
