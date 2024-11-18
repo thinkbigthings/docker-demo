@@ -18,13 +18,9 @@ jobs:
         uses: cloudbees-io/checkout@v1
              
       - name: Build container image with Kaniko
-        uses: cloudbees-io/kaniko@main
+        uses: cloudbees-io/kaniko/.cloudbees/testing
         with:
           context: .
           dockerfile: Dockerfile
           destination: docker.io/jyoungcb/docker-demo:0.0.1-${{cloudbees.version}}
           send-artifact-info: true
-        env:
-          registry: https://index.docker.io/v1/
-          username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
