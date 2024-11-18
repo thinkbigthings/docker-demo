@@ -18,3 +18,10 @@ jobs:
         shell: sh
         run: |
           ./gradlew clean build
+      - id: dockerconfig
+        name: Configure container registry credentials
+        uses: cloudbees-io/configure-oci-credentials@v1
+        with:
+          registry: https://index.docker.io/v1/
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
