@@ -16,38 +16,15 @@ jobs:
     steps:
       - name: Checkout
         uses: cloudbees-io/checkout@v1
-
-      - name: Login to AWS
-        uses: cloudbees-io/configure-aws-credentials@v1
-        with:
-          aws-region: us-east-1
-          role-to-assume: ${{ vars.oidc_staging_iam_role }}
-          role-duration-seconds: "3600"
-
-      - name: Configure container registry for ECR
-        uses: cloudbees-io/configure-ecr-credentials@v1
-
-      - name: Build
-        uses: docker://eclipse-temurin:21-alpine
-        shell: sh
-        run: |
-          ./gradlew clean build
-
-      - id: dockerconfig
-        name: Configure container registry credentials
-        uses: cloudbees-io/configure-oci-credentials@v1
-        with:
-          registry: https://index.docker.io/v1/
-          username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
+             
       - name: Build container image with Kaniko
         uses: cloudbees-io/kaniko@main
         with:
           context: .
           dockerfile: Dockerfile
           destination: docker.io/jyoungcb/docker-demo:0.0.1-${{cloudbees.version}}
-          skip-default-registry-fallback: 'true'
-          registry-mirrors: docker.io/jyoungcb/docker-hub
-          verbosity: debug
           send-artifact-info: true
+        env:
+          registry: https://index.docker.io/v1/
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
