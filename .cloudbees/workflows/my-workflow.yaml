@@ -16,6 +16,15 @@ jobs:
     steps:
       - name: Checkout
         uses: cloudbees-io/checkout@v1
+
+      - id: dockerconfig
+        name: Configure container registry credentials
+        uses: cloudbees-io/configure-oci-credentials@v1
+        with:
+          registry: https://index.docker.io/v1/
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
              
       - name: Build container image with Kaniko
         uses: cloudbees-io/kaniko/.cloudbees/testing
