@@ -29,7 +29,7 @@ jobs:
       - name: Build container image with Kaniko
         uses: cloudbees-io/kaniko/.cloudbees/testing
         with:
-          context: .cloudbees/testing
-          dockerfile: Dockerfile
+          context: cloudbees-io/kaniko/.cloudbees/testing
+          dockerfile: Dockerfile-test
           destination: docker.io/jyoungcb/docker-demo:0.0.1-${{cloudbees.version}}
           send-artifact-info: true
