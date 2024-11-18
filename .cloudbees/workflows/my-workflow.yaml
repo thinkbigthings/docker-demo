@@ -12,7 +12,7 @@ jobs:
   build:
     steps:
       - name: Checkout
-        uses: cloudbees-io/checkout@v1.1.16
+        uses: cloudbees-io/checkout@v1
 
       - name: Login to AWS
         uses: cloudbees-io/configure-aws-credentials@v1
