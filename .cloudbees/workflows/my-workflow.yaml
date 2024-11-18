@@ -31,4 +31,3 @@ jobs:
         with:
           send-artifact-info: true
           destination:  docker.io/jyoungcb/docker-demo:0.0.1-${{cloudbees.version}}
-
