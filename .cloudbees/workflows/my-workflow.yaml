@@ -24,7 +24,7 @@ jobs:
         run: |
           ./gradlew clean build;
       - name: Build container image with Kaniko
-        uses: cloudbees-io/kaniko/.cloudbees/testing@main
+        uses: cloudbees-io/kaniko/.cloudbees/testing
         with:
           destination: docker.io/jyoungcb/docker-demo:0.0.1-${{cloudbees.version}}
           verbosity: debug
