@@ -5,9 +5,7 @@ on:
   push:
     branches:
       - "**"
-  workflow_dispatch:
-permissions:
-  id-token: write
+
 jobs:
   build:
     steps:
@@ -20,6 +18,11 @@ jobs:
           registry: https://index.docker.io/v1/
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Gradle Build
+        uses: docker://eclipse-temurin:21-alpine
+        shell: sh
+        run: |
+          ./gradlew clean build;
       - name: Build container image with Kaniko
         uses: cloudbees-io/kaniko/.cloudbees/testing
         with:
