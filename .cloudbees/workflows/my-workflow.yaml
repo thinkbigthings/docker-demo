@@ -30,7 +30,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build container image with Kaniko
-        uses: cloudbees-io/kaniko/.cloudbees/testing
+        # uses: cloudbees-io/kaniko/.cloudbees/testing
+        uses: cloudbees-io/kaniko
         with:
           destination: docker.io/jyoungcb/docker-demo:0.0.1-${{cloudbees.version}}
           verbosity: debug
