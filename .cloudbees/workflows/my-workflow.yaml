@@ -25,16 +25,16 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build container image with Kaniko
-        uses: cloudbees-io/kaniko
+        uses: cloudbees-io/kaniko@v1.1.12
         with:
           destination: docker.io/jyoungcb/docker-demo:0.0.1-${{cloudbees.version}}
           verbosity: debug
-    needs:
-      - Approval
-  Approval:
-    timeout-minutes: 4320
-    delegates: cloudbees-io/manual-approval/custom-job.yml@v1
-    with:
-      approvers: d20e99a0-7aa9-11ec-a35c-42010a83aeda
-      disallowLaunchByUser: false
-      instructions: Approve me please
+    # needs:
+    #   - Approval
+  # Approval:
+  #   timeout-minutes: 4320
+  #   delegates: cloudbees-io/manual-approval/custom-job.yml@v1
+  #   with:
+  #     approvers: d20e99a0-7aa9-11ec-a35c-42010a83aeda
+  #     disallowLaunchByUser: false
+  #     instructions: Approve me please
